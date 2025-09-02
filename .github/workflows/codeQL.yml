@@ -13,6 +13,11 @@ jobs:
       security-events: write
       actions: read
       contents: read
+      
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['csharp', 'python'] 
 
     steps:
       - name: Checkout repository
@@ -20,8 +25,6 @@ jobs:
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
-        with:
-          languages: csharp, python
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
